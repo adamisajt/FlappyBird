@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="madar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="kepek\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="madar.png" />
   </ItemGroup>
 
   <ItemGroup>

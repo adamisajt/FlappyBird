@@ -33,9 +33,11 @@
                            Width="800" Height="450"
                            Source="hatter.png" />
 
-                    <Image x:Name="Bird"
-                           Width="60" Height="45"
-                           Source="pack://application:,,,/kepek/madar.png" Canvas.Left="44" Canvas.Top="234" />
+                    <Ellipse Name="flappyBird" Height="38" Width="50" Canvas.Left="62" Canvas.Top="206" Stroke="Black">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="madar.png" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
                 </Canvas>
             </Viewbox>
         </Border>
