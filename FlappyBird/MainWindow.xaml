@@ -1,45 +1,143 @@
 ﻿<Window x:Class="FlappyBird.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Flappy Bird"
-        Width="900" Height="600"
-        Background="#111111"
+        Title="FlappyBirb"
+        MinWidth="480" MinHeight="320"
+        ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen"
-        KeyDown="Window_KeyDown"
-        Loaded="Window_Loaded">
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        FocusManager.FocusedElement="{Binding ElementName=canvas}"
+        KeyDown="Canvas_KeyisDown"
+        KeyUp="Canvas_KeyisUp"
+        SizeToContent="WidthAndHeight">
 
     <Window.Resources>
-        <Style TargetType="Image">
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="UseLayoutRounding" Value="True" />
-            <Setter Property="RenderOptions.BitmapScalingMode"
-                    Value="NearestNeighbor" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#BDE8F5"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="18"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Border Margin="20"
-                CornerRadius="12"
-                BorderThickness="2"
-                BorderBrush="#333333"
-                Background="Black">
-            <Viewbox Stretch="Uniform">
-                <Canvas x:Name="GameCanvas"
-                        Width="800"
-                        Height="450"
-                        ClipToBounds="True"
-                        Background="Black">
 
-                    <Image x:Name="BackgroundImage"
-                           Width="800" Height="450"
-                           Source="hatter.png" />
+    <Grid Background="Transparent">
+        <Viewbox x:Name="jatekViewbox" Stretch="Uniform" StretchDirection="Both">
+            <Canvas x:Name="canvas"
+                    Width="700" Height="500"
+                    Focusable="True"
+                    KeyDown="Canvas_KeyisDown"
+                    KeyUp="Canvas_KeyisUp">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/kepek/background.png"
+                                Stretch="Fill"/>
+                </Canvas.Background>
 
-                    <Ellipse Name="flappyBird" Height="38" Width="50" Canvas.Left="62" Canvas.Top="206" Stroke="Black">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="madar.png" Stretch="UniformToFill"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </Canvas>
-            </Viewbox>
-        </Border>
+                <Label Name="scoreText"
+                       FontFamily="Times New Roman"
+                       FontSize="20"
+                       Content="Score: 0"
+                       Canvas.Left="10"
+                       Canvas.Top="10"/>
+
+                <Ellipse Name="flappyBird"
+                         Height="49.5" Width="78"
+                         Canvas.Left="40" Canvas.Top="196"
+                         Stroke="Transparent">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="pack://application:,,,/kepek/flappyBird.png"
+                                    Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Button x:Name="szintekButton"
+                        Content="Szintek"
+                        Height="92" Canvas.Left="235" Canvas.Top="82"
+                        Width="156"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        Click="szintekButton_Click"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <Button x:Name="eredmenyekButton"
+                        Content="Eredmények"
+                        Height="92" Canvas.Left="240" Canvas.Top="283"
+                        Width="156"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        Click="eredmenyekButton_Click"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <Button x:Name="simaButton"
+                        Content="Sima"
+                        Height="92" Canvas.Left="235" Canvas.Top="82"
+                        Width="156"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Visibility="Hidden"
+                        Click="simaButton_Click"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <Button x:Name="esosButton"
+                        Content="Nap"
+                        Height="92" Canvas.Left="240" Canvas.Top="183"
+                        Width="156"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        Visibility="Hidden"
+                        Click="esosButton_Click"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <Button x:Name="kodosButton"
+                        Content="Űr"
+                        Height="92" Canvas.Left="240" Canvas.Top="283"
+                        Width="156"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Visibility="Hidden"
+                        Click="kodosButton_Click"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <Button x:Name="VisszaMainButton"
+                        Content="Vissza"
+                        Height="44" Canvas.Left="256" Canvas.Top="33"
+                        Width="114"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Visibility="Hidden"
+                        Click="VisszaMainButton_Click"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <Button x:Name="VisszaAFőmenübe"
+                        Content="Vissza"
+                        Height="30" Canvas.Left="522" Canvas.Top="394"
+                        Width="68"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Click="VisszaAFőmenübe_Click"
+                        Visibility="Hidden"
+                        FontFamily="Times New Roman" FontSize="20"/>
+
+                <TextBlock x:Name="ScoreTextblock"
+                           Height="305" Canvas.Left="40"
+                           TextWrapping="Wrap"
+                           Text="Eddig elért eremények:"
+                           Canvas.Top="82"
+                           Width="516"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"
+                           FontSize="25"
+                           Visibility="Hidden"
+                           FontFamily="Times New Roman"/>
+
+            </Canvas>
+        </Viewbox>
     </Grid>
 </Window>

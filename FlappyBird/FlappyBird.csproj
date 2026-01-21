@@ -9,30 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="madar.png" />
+    <None Remove="kepek\background.png" />
+    <None Remove="kepek\flappyBird.png" />
+    <None Remove="kepek\nap.jpg" />
+    <None Remove="kepek\ur.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="kepek\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="madar.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="hatter.png">
+    <Resource Include="kepek\background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="kepek\flappy_bird_app_bg_only.png">
+    </Resource>
+    <Resource Include="kepek\flappyBird.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="kepek\PikPng.com_flappy-bird-png_2737091.png">
+    </Resource>
+    <Resource Include="kepek\nap.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="kepek\toppng.com-flappy-bird-pipe-transparent-281x1080.png">
+    </Resource>
+    <Resource Include="kepek\ur.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
 
 </Project>
