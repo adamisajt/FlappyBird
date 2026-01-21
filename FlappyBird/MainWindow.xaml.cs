@@ -1,19 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace FlappyBird
 {
     public partial class MainWindow : Window
     {
-        DispatcherTimer gameTimer = new DispatcherTimer();
+        private readonly System.Timers.Timer gameLoop;
 
         double velocity = 0;
         double gravityForce = 0.5;
@@ -55,8 +55,14 @@ namespace FlappyBird
         {
             InitializeComponent();
 
-            gameTimer.Interval = TimeSpan.FromMilliseconds(20);
-            gameTimer.Tick += GameEngine;
+            gameLoop = new System.Timers.Timer(20); 
+            gameLoop.Elapsed += GameLoop_Elapsed;
+            gameLoop.AutoReset = true;
+        }
+
+        private void GameLoop_Elapsed(object? sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(() => GameEngine(sender, EventArgs.Empty));
         }
 
         private Brush MakeBackground(string packPath)
@@ -110,7 +116,6 @@ namespace FlappyBird
 
             ApplyModeSettings();
 
-            
             szintekButton.Visibility = Visibility.Hidden;
             eredmenyekButton.Visibility = Visibility.Hidden;
             simaButton.Visibility = Visibility.Hidden;
@@ -127,7 +132,7 @@ namespace FlappyBird
             CreatePipes();
 
             canvas.Focus();
-            gameTimer.Start();
+            gameLoop.Start();
         }
 
         private void GameEngine(object? sender, EventArgs e)
@@ -282,7 +287,7 @@ namespace FlappyBird
 
         private void GameOver()
         {
-            gameTimer.Stop();
+            gameLoop.Stop();
             gameStarted = false;
 
             RemoveOldPipes();
@@ -302,7 +307,6 @@ namespace FlappyBird
             flappyBird.Visibility = Visibility.Visible;
             scoreText.Visibility = Visibility.Visible;
 
-            MessageBox.Show("Vége a játéknak! Pontszám: " + score);
         }
 
         private void szintekButton_Click(object sender, RoutedEventArgs e)
@@ -332,7 +336,7 @@ namespace FlappyBird
             flappyBird.Visibility = Visibility.Visible;
             scoreText.Visibility = Visibility.Visible;
 
-            gameTimer.Stop();
+            gameLoop.Stop();
             gameStarted = false;
         }
 
@@ -349,7 +353,7 @@ namespace FlappyBird
             flappyBird.Visibility = Visibility.Visible;
             scoreText.Visibility = Visibility.Visible;
 
-            gameTimer.Stop();
+            gameLoop.Stop();
             gameStarted = false;
         }
 
@@ -362,7 +366,7 @@ namespace FlappyBird
             flappyBird.Visibility = Visibility.Hidden;
             scoreText.Visibility = Visibility.Hidden;
 
-            gameTimer.Stop();
+            gameLoop.Stop();
             gameStarted = false;
 
             ScoreTextblock.Text = "Eddig elért eredmények:\n";
