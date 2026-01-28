@@ -15,7 +15,7 @@ namespace FlappyBird
     {
         private readonly System.Timers.Timer gameLoop;
 
-        double velocity = 0;
+        double velocity = 0; 
         double gravityForce = 0.5;
         double jumpForce = -8;
 
@@ -55,7 +55,7 @@ namespace FlappyBird
         {
             InitializeComponent();
 
-            gameLoop = new System.Timers.Timer(20); 
+            gameLoop = new System.Timers.Timer(20);
             gameLoop.Elapsed += GameLoop_Elapsed;
             gameLoop.AutoReset = true;
         }
@@ -215,18 +215,33 @@ namespace FlappyBird
             double maxTopHeight = 250;
             double topHeight = rand.Next((int)minTopHeight, (int)maxTopHeight);
 
+            
+            Brush pipeBrush;
+            switch (currentMode)
+            {
+                case GameMode.Ur:
+                    pipeBrush = Brushes.Gray;      
+                    break;
+                case GameMode.Nap:
+                    pipeBrush = Brushes.Orange;    
+                    break;
+                default:
+                    pipeBrush = Brushes.Green;     
+                    break;
+            }
+
             topPipe = new Rectangle
             {
                 Width = 80,
                 Height = topHeight,
-                Fill = Brushes.Green
+                Fill = pipeBrush
             };
 
             bottomPipe = new Rectangle
             {
                 Width = 80,
                 Height = canvas.Height - topHeight - gap,
-                Fill = Brushes.Green
+                Fill = pipeBrush
             };
 
             Canvas.SetLeft(topPipe, startX);
@@ -309,6 +324,13 @@ namespace FlappyBird
 
         }
 
+        private void ResetLevelButtonColors()
+        {
+            simaButton.Background = Brushes.LightBlue;   
+            esosButton.Background = Brushes.Orange;      
+            kodosButton.Background = Brushes.Gray;       
+        }
+
         private void szintekButton_Click(object sender, RoutedEventArgs e)
         {
             szintekButton.Visibility = Visibility.Hidden;
@@ -321,6 +343,8 @@ namespace FlappyBird
             VisszaAFőmenübe.Visibility = Visibility.Hidden;
             flappyBird.Visibility = Visibility.Visible;
             scoreText.Visibility = Visibility.Visible;
+
+            ResetLevelButtonColors();   
         }
 
         private void VisszaMainButton_Click(object sender, RoutedEventArgs e)
@@ -411,6 +435,9 @@ namespace FlappyBird
 
         private void simaButton_Click(object sender, RoutedEventArgs e)
         {
+            ResetLevelButtonColors();
+            simaButton.Background = Brushes.LightSkyBlue;  
+
             ScoreTextblock.Visibility = Visibility.Hidden;
             VisszaAFőmenübe.Visibility = Visibility.Hidden;
 
@@ -420,6 +447,9 @@ namespace FlappyBird
 
         private void esosButton_Click(object sender, RoutedEventArgs e)
         {
+            ResetLevelButtonColors();
+            esosButton.Background = Brushes.OrangeRed;   
+
             ScoreTextblock.Visibility = Visibility.Hidden;
             VisszaAFőmenübe.Visibility = Visibility.Hidden;
 
@@ -429,6 +459,9 @@ namespace FlappyBird
 
         private void kodosButton_Click(object sender, RoutedEventArgs e)
         {
+            ResetLevelButtonColors();
+            kodosButton.Background = Brushes.DarkGray;     
+
             ScoreTextblock.Visibility = Visibility.Hidden;
             VisszaAFőmenübe.Visibility = Visibility.Hidden;
 

@@ -49,7 +49,7 @@
                 </Canvas.Background>
 
                 <Label Name="scoreText"
-                       FontFamily="Times New Roman"
+                       FontFamily="Arial"
                        FontSize="20"
                        Content="Score: 0"
                        Canvas.Left="10"
@@ -67,28 +67,28 @@
 
                 <Button x:Name="szintekButton"
                         Content="Szintek"
-                        Height="92" Canvas.Left="235" Canvas.Top="82"
+                        Height="92" Canvas.Left="240" Canvas.Top="131"
                         Width="156"
                         HorizontalAlignment="Center" VerticalAlignment="Top"
                         Click="szintekButton_Click"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <Button x:Name="eredmenyekButton"
                         Content="Eredmények"
-                        Height="92" Canvas.Left="240" Canvas.Top="283"
+                        Height="92" Canvas.Left="240" Canvas.Top="237"
                         Width="156"
                         HorizontalAlignment="Center" VerticalAlignment="Top"
                         Click="eredmenyekButton_Click"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <Button x:Name="simaButton"
                         Content="Sima"
-                        Height="92" Canvas.Left="235" Canvas.Top="82"
+                        Height="92" Canvas.Left="240" Canvas.Top="82"
                         Width="156"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Visibility="Hidden"
                         Click="simaButton_Click"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <Button x:Name="esosButton"
                         Content="Nap"
@@ -97,7 +97,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top"
                         Visibility="Hidden"
                         Click="esosButton_Click"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <Button x:Name="kodosButton"
                         Content="Űr"
@@ -106,7 +106,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center"
                         Visibility="Hidden"
                         Click="kodosButton_Click"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <Button x:Name="VisszaMainButton"
                         Content="Vissza"
@@ -115,7 +115,7 @@
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         Visibility="Hidden"
                         Click="VisszaMainButton_Click"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <Button x:Name="VisszaAFőmenübe"
                         Content="Vissza"
@@ -124,7 +124,7 @@
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         Click="VisszaAFőmenübe_Click"
                         Visibility="Hidden"
-                        FontFamily="Times New Roman" FontSize="20"/>
+                        FontFamily="Arial" FontSize="20"/>
 
                 <TextBlock x:Name="ScoreTextblock"
                            Height="305" Canvas.Left="40"
@@ -135,7 +135,7 @@
                            HorizontalAlignment="Left" VerticalAlignment="Top"
                            FontSize="25"
                            Visibility="Hidden"
-                           FontFamily="Times New Roman"/>
+                           FontFamily="Arial"/>
 
             </Canvas>
         </Viewbox>
